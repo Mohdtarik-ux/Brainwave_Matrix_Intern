@@ -1,4 +1,4 @@
-A static web portfolio deployed using AWS S3 and delivered globally via CloudFront CDN
+A static web portfolio deployed using AWS S3 and delivered globally via s3 and CloudFront CDN.
 
 <img width="1366" height="736" alt="Static web portfolio1 " src="https://github.com/user-attachments/assets/1c36a96b-096d-4dd6-b156-efaf418af2a2" />
 
@@ -63,7 +63,7 @@ bash
 aws s3 sync ./ s3://mohd-tarik-portfolio-2025 --delete
 This command uploads your local files to the S3 bucket, replacing files that no longer exist locally (--delete).
 
- 3.Basic index.html Code Example
+3.Basic index.html Code Example
 xml
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +86,7 @@ xml
   <script src="main.js"></script>
 </body>
 </html>
+
 4. Example CSS (styles.css)
 css
 body {
@@ -106,6 +107,7 @@ body {
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
+
 5. Example JavaScript (main.js)
 javascript
 document.querySelector('button').addEventListener('click', () => {
