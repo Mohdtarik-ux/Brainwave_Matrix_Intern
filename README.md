@@ -203,7 +203,7 @@ Delete unused resources when not needed
 LinkedIn: www.linkedin.com/in/
 mohd-tarik-0294b0274
 
-Email: mohdtarik2304@gmail.com
+Email: mohdtarik0423@gmail.com
 
 # How to Use This Repo
 
