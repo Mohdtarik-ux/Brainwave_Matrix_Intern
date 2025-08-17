@@ -2,10 +2,11 @@ A static web portfolio deployed using AWS S3 and delivered globally via s3 and C
 
 <img width="1366" height="736" alt="Static web portfolio1 " src="https://github.com/user-attachments/assets/1c36a96b-096d-4dd6-b156-efaf418af2a2" />
 
+
 <img width="1366" height="736" alt="static web portfolio2" src="https://github.com/user-attachments/assets/e292b634-ece8-4e92-9bc6-8c65de98670f" />
 
  # Live site URL:
-https://d31vktgdbnjbx4.cloudfront.net
+https://d3lvktgdbnjbx4.cloudfront.net/
 
 # Project Overview
 
