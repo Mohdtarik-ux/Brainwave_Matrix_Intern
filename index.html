@@ -1,0 +1,118 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohd Tarik's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end) 1;
+        }
+        .skill-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-16">
+        <h1 class="text-5xl font-bold mb-4">Mohd Tarik</h1>
+        <p class="text-xl typing-effect inline-block">Cloud Enthusiast & Aspiring Tech Professional</p>
+    </header>
+    <section class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold text-blue-600 mb-4">About Me</h2>
+        <p class="text-lg">Hi, I'm Mohd Tarik, a passionate cloud computing enthusiast currently honing my skills in AWS, Linux, networking, and Git Actions. I'm excited about building scalable solutions and exploring the world of cloud technology during my internship. My goal is to contribute to innovative projects and grow as a tech professional.</p>
+    </section>
+    <section class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold text-blue-600 mb-4">Skills</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="skill-card bg-gray-50 p-4 rounded-lg flex items-center">
+                <svg class="w-8 h-8 text-blue-500 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 14v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <span>Amazon Web Services (AWS)</span>
+            </div>
+            <div class="skill-card bg-gray-50 p-4 rounded-lg flex items-center">
+                <svg class="w-8 h-8 text-blue-500 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14zm-6-8h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2z"/></svg>
+                <span>Linux</span>
+            </div>
+            <div class="skill-card bg-gray-50 p-4 rounded-lg flex items-center">
+                <svg class="w-8 h-8 text-blue-500 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                <span>Networking</span>
+            </div>
+            <div class="skill-card bg-gray-50 p-4 rounded-lg flex items-center">
+                <svg class="w-8 h-8 text-blue-500 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92c-.5.51-.86.97-1.04 1.69-.18.72-.23 1.54-.23 2.14h-2v-.5c0-1.02.2-1.92.67-2.67.46-.75 1.14-1.33 1.62-1.81l1.27-1.27c.55-.55.94-1.33.94-2.19 0-1.66-1.34-3-3-3s-3 1.34-3 3h-2c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.43-.61 2.71-1.56 3.59z"/></svg>
+                <span>Git Actions</span>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg contact">
+        <h2 class="text-3xl font-semibold text-blue-600 mb-4">Contact</h2>
+        <p class="text-lg mb-4">Email: <a href="mailto:mohdtarik2304@gmail.com" class="text-blue-500 hover:underline">mohdtarik2304@gmail.com</a></p>
+        <button onclick="showWelcome()" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">Say Hello!</button>
+    </section>
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2025 Mohd Tarik. All rights reserved.</p>
+    </footer>
+    <script>
+        function showWelcome() {
+            alert("Welcome to my portfolio! Reach out via email to connect.");
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
