@@ -182,7 +182,7 @@ Access Your Site
 
 Open CloudFront URL in browser,
 
-https://d31vktgdbnjbx4.cloudfront.net
+https://d3lvktgdbnjbx4.cloudfront.net/
 
 Verify your site loads properly with CSS, JS, images
 
