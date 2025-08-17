@@ -139,25 +139,36 @@ https://d31vktgdbnjbx4.cloudfront.net
 Verify your site loads properly with CSS, JS, images
 
 Step 6:
+
 Monitor & Manage Billing
+
 Check AWS Billing dashboard periodically
+
 Keep within Free Tier to avoid unexpected charges
+
 Delete unused resources when not needed
+
 <img width="1366" height="736" alt="Static web portfolio1 " src="https://github.com/user-attachments/assets/dd706123-f377-4b66-b6a1-b04d46c25cf1" />
 
 
 
 Hi! I’m Mohd Tarik, a cloud engineering intern and AWS enthusiast. 
+
 I’m passionate about cloud computing and web development. Reach out if you want to collaborate or learn together!
 
 🔗 Contact Me
+
 LinkedIn: www.linkedin.com/in/
 mohd-tarik-0294b0274
+
 Email: mohdtarik2304@gmail.com
 
 # How to Use This Repo
+
 Clone or fork this repo to see the source code
+
 Modify index.html, CSS, JS to add your projects or skills
+
 Follow deployment steps to upload your updated portfolio to AWS
 
 # THANK YOU
